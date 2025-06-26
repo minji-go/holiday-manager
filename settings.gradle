@@ -1,5 +1,17 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
 rootProject.name = 'holiday-manager'
 include 'common'
 include 'external'
 include 'api'
-
