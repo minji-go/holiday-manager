@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "nagerClient", url = "${external.nager.url}")
+@FeignClient(name = "nagerClient", url = "${external.nager.url}", configuration = NagerClientConfig.class)
 public interface NagerClient {
 
     @GetMapping("api/v3/AvailableCountries")

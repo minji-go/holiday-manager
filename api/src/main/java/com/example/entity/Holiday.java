@@ -27,15 +27,17 @@ public class Holiday extends BaseEntity {
     private boolean isFixed;
     @Column(name = "is_global")
     private boolean isGlobal;
-    @Column(name = "counties")
-    private String counties;
+    @ElementCollection
+    @CollectionTable(name = "country_region")
+    @Column(name = "region")
+    private List<String> counties = new ArrayList<>();
     @Column(name = "launch_year")
     private String launchYear;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "holidayId")
     private List<HolidayType> types = new ArrayList<>();
 
-    public Holiday(Country country, LocalDate date, String localName, String name, boolean isFixed, boolean isGlobal, String counties, String launchYear, List<HolidayType> types) {
+    public Holiday(Country country, LocalDate date, String localName, String name, boolean isFixed, boolean isGlobal, List<String> counties, String launchYear, List<HolidayType> types) {
         this.country = country;
         this.date = date;
         this.localName = localName;

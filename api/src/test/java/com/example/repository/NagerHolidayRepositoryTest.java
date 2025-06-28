@@ -1,6 +1,8 @@
 package com.example.repository;
 
+import com.example.NagerCountryResponse;
 import com.example.NagerHolidayResponse;
+import com.example.dto.CountryResponse;
 import com.example.dto.HolidayResponse;
 import com.example.feign.NagerClient;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +26,23 @@ class NagerHolidayRepositoryTest {
     }
 
     @Test
-    void findHolidaysByYearAndCountryCode_returnsConvertedList() {
+    void findAllCountries() {
+        when(nagerClient.findCountries())
+                .thenReturn(List.of(new NagerCountryResponse("KR", "South Korea"),
+                        new NagerCountryResponse("US", "United States")));
+
+        List<CountryResponse> result = repository.findAllCountries();
+
+        assertThat(result)
+                .extracting(CountryResponse::code, CountryResponse::name)
+                .containsExactlyInAnyOrder(
+                        tuple("KR", "South Korea"),
+                        tuple("US", "United States")
+                );
+    }
+
+    @Test
+    void findHolidaysByYearAndCountryCode() {
         int year = 2025;
         String countryCode = "KR";
 

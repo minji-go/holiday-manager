@@ -10,7 +10,7 @@ public record GetHolidayResponse(
         String countryCode,
         boolean fixed,
         boolean global,
-        String counties,
+        List<String> counties,
         String launchYear,
         List<String> types) {
 }

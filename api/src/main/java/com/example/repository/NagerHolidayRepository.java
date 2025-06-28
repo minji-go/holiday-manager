@@ -1,6 +1,8 @@
 package com.example.repository;
 
+import com.example.NagerCountryResponse;
 import com.example.NagerHolidayResponse;
+import com.example.dto.CountryResponse;
 import com.example.dto.HolidayResponse;
 import com.example.feign.NagerClient;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NagerHolidayRepository implements HolidaySourceRepository {
     private final NagerClient nagerClient;
+
+    @Override
+    public List<CountryResponse> findAllCountries() {
+        List<NagerCountryResponse> countries = nagerClient.findCountries();
+
+        return countries.stream()
+                .map(country -> new CountryResponse(country.countryCode(), country.name()))
+                .toList();
+    }
 
     @Override
     public List<HolidayResponse> findHolidaysByYearAndCountryCode(int year, String countryCode) {
