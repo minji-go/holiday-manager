@@ -14,8 +14,7 @@ public class ExecutorConfig {
         int coreCount = Runtime.getRuntime().availableProcessors();
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(coreCount);
-        executor.setMaxPoolSize(coreCount * 4);
+        executor.setCorePoolSize(coreCount * 4);
         executor.setKeepAliveSeconds(60);
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.setAwaitTerminationSeconds(60);

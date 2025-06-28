@@ -60,7 +60,46 @@
 <br>
 
 ## 🧩 체크리스트
-- [ ] 빌드 & 실행 방법
-- [ ] 설계한 REST API 명세 요약** (엔드포인트·파라미터·응답 예시)
-- [ ] ./gradlew clean test 성공 스크린샷 (테스트 작성 시)
-- [ ] Swagger UI 또는 OpenAPI JSON 노출 확인 방법
+
+- 빌드 & 실행 방법
+  - `./gradlew :api:bootRun`
+- ./gradlew clean test 성공 스크린샷 (테스트 작성 시)
+  - ![img.png](gradlew-clean-build.png)
+- Swagger UI 또는 OpenAPI JSON 노출 확인 방법
+  - http://localhost:8080/swagger-ui/index.html
+- 설계한 REST API 명세 요약** (엔드포인트·파라미터·응답 예시)
+  - `GET /api/v1/holidays`
+    - 설명: 공휴일 목록 조회
+    - 파라미터:
+      - year (optional): 연도 필터
+      - countryCode (optional): 국가 코드 필터
+      - from (optional): 시작 날짜 필터 (YYYY-MM-DD)
+      - to (optional): 종료 날짜 필터 (YYYY-MM-DD)
+      - page (required): 페이지 번호
+      - size (required): 페이지 크기
+    - 응답 예시:
+      ```json
+      {
+        "page": 1,
+        "size": 10,
+        "totalElements": 1,
+        "contents": [
+          {
+            "date": "2023-01-01",
+            "localName": "New Year's Day",
+            "countryCode": "US"
+          }
+        ]
+      }
+      ```
+  - `PUT /api/v1/holidays/{year}/{countryCode}`
+    - 설명: 특정 연도·국가의 공휴일 데이터 재동기화
+    - 파라미터:
+      - year (required): 연도 
+      - countryCode (required): 국가 코드
+
+  - `DELETE /api/v1/holidays/{year}/{countryCode}`
+    - 설명: 특정 연도·국가의 공휴일 데이터 삭제
+    - 파라미터:
+      - year (required): 연도
+      - countryCode (required): 국가 코드

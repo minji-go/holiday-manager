@@ -4,7 +4,6 @@ import com.example.dto.CountryResponse;
 import com.example.dto.HolidayResponse;
 import com.example.entity.Country;
 import com.example.entity.Holiday;
-import com.example.entity.HolidayType;
 import com.example.repository.CountryRepository;
 import com.example.repository.HolidayRepository;
 import com.example.repository.HolidaySourceRepository;
@@ -60,10 +59,7 @@ public class DataInitializeService {
                         holiday.global(),
                         holiday.counties(),
                         holiday.launchYear(),
-                        holiday.types().stream()
-                                .map(HolidayType::new)
-                                .toList()
-                ))
+                        holiday.types()))
                 .toList();
     }
 }

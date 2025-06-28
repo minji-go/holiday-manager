@@ -6,7 +6,6 @@ import com.example.dto.HolidayResponse;
 import com.example.dto.SearchHolidayDto;
 import com.example.entity.Country;
 import com.example.entity.Holiday;
-import com.example.entity.HolidayType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -39,9 +38,7 @@ public class HolidayApplicationService {
                         holiday.isGlobal(),
                         holiday.getCounties(),
                         holiday.getLaunchYear(),
-                        holiday.getTypes().stream()
-                                .map(HolidayType::getType)
-                                .toList()))
+                        holiday.getTypes()))
                 .toList();
     }
 
@@ -77,9 +74,7 @@ public class HolidayApplicationService {
                         source.global(),
                         source.counties(),
                         source.launchYear(),
-                        source.types().stream()
-                                .map(HolidayType::new)
-                                .toList()))
+                        source.types()))
                 .toList();
     }
 }

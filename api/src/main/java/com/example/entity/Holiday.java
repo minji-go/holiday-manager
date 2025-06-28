@@ -33,11 +33,12 @@ public class Holiday extends BaseEntity {
     private List<String> counties = new ArrayList<>();
     @Column(name = "launch_year")
     private String launchYear;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "holidayId")
-    private List<HolidayType> types = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "holiday_type")
+    @Column(name = "type")
+    private List<String> types = new ArrayList<>();
 
-    public Holiday(Country country, LocalDate date, String localName, String name, boolean isFixed, boolean isGlobal, List<String> counties, String launchYear, List<HolidayType> types) {
+    public Holiday(Country country, LocalDate date, String localName, String name, boolean isFixed, boolean isGlobal, List<String> counties, String launchYear, List<String> types) {
         this.country = country;
         this.date = date;
         this.localName = localName;
