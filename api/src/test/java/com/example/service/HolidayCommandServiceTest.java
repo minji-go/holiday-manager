@@ -26,7 +26,7 @@ class HolidayCommandServiceTest {
     void refreshWhenNotExists(int year) {
         LocalDate startDate = LocalDate.of(year, 1, 1);
         LocalDate endDate = LocalDate.of(year, 12, 31);
-        Country country = new Country("KR", "Korea");
+        Country country = new Country("KR", "South Korea");
 
         service.deleteHoliday(country, year);
 

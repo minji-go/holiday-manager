@@ -28,7 +28,7 @@ class HolidayApplicationServiceTest {
     @ValueSource(booleans = {true, false})
     void deleteIfExists(boolean exists) {
         int year = 2025;
-        Country country = new Country("KR", "Korea");
+        Country country = new Country("KR", "South Korea");
 
         when(queryService.findCountry(country.getCode())).thenReturn(country);
         when(queryService.existsHoliday(country, year)).thenReturn(exists);
@@ -42,7 +42,7 @@ class HolidayApplicationServiceTest {
     @ValueSource(booleans = {true, false})
     void refreshIfNotExists(boolean hasData) {
         int year = 2025;
-        Country country = new Country("KR", "Korea");
+        Country country = new Country("KR", "South Korea");
 
         when(queryService.findCountry(country.getCode())).thenReturn(country);
         when(queryService.existsHoliday(country, year)).thenReturn(false);
